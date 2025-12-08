@@ -1,1099 +1,932 @@
-<<<<<<< HEAD
 /* ফন্ট সেটআপ */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
 
-:root{
-  --bg1:#ffdde1;
-  --bg2:#ee9ca7;
-  --accent:#d6336c;
-  --accent2:#6a0572;
-  --glass-bg:rgba(255,255,255,0.18);
-  --glass-brd:rgba(255,255,255,0.4);
-  --text:#2b2b2b;
+:root {
+  --bg1: #ffdde1;
+  --bg2: #ee9ca7;
+  --accent: #d6336c;
+  --accent2: #6a0572;
+  --glass-bg: rgba(255,255,255,0.18);
+  --glass-brd: rgba(255,255,255,0.4);
+  --text: #2b2b2b;
 }
-body {
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--text);
+  font-family: 'Noto Sans Bengali', 'Poppins', system-ui, 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  background-attachment: fixed;
+  overflow-x: hidden;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #fce4ec, #fff);
-  overflow-x: hidden; /* allow vertical scroll */
-  font-family: 'Segoe UI', sans-serif;
 }
 
-.sorry {
-  position: absolute;
-  top: -50px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #e91e63;
-  opacity: 0.9;
-  animation: fall linear forwards;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(50vh) rotate(90deg);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(100vh) rotate(180deg);
-    opacity: 0;
-  }
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-  margin:0;
-  color:var(--text);
-  font-family:'Noto Sans Bengali','Poppins',system-ui,Segoe UI,sans-serif;
-  background:
-    linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    linear-gradient(135deg, var(--bg1), var(--bg2));
-  overflow-x:hidden;
-}
-
-/* পেজভিত্তিক ব্যাকগ্রাউন্ড ও ইমেজ ব্লেন্ড */
-.page-home{
-  background-image:
-    linear-gradient(120deg, rgba(255, 153, 204, 0.35), rgba(102, 0, 153, 0.35)),
-    url('prapti-bg.jpg');
+/* Page-specific backgrounds */
+.page-home {
+  background-image: linear-gradient(120deg, rgba(255, 153, 204, 0.35), rgba(102, 0, 153, 0.35)),
+                    url('prapti-bg.jpg');
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;
 }
 
-.page-about, .page-gallery, .page-contact{
-  background-image:
-    radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.35), transparent 60%),
-    linear-gradient(135deg, #f9c5d1, #9795f0);
+.page-about, .page-gallery, .page-contact {
+  background-image: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.35), transparent 60%),
+                    linear-gradient(135deg, #f9c5d1, #9795f0);
 }
 
-/* ন্যাভ */
-.nav{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 24px; position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-brd);
 }
-.nav .brand{font-weight:700; letter-spacing:.5px; color:#fff}
-.nav ul{display:flex; gap:10px; list-style:none; margin:0; padding:0}
-.nav-toggle{ display:none; background:transparent; border:none; color:#fff; font-size:22px; padding:8px; margin-left:10px }
-.nav-toggle:focus{ outline: 3px solid rgba(255,255,255,0.12); border-radius:8px }
 
-.nav .btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 16px; color:#fff; text-decoration:none; position:relative; transition:.3s;
+.nav .brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-size: clamp(14px, 4vw, 18px);
 }
-.btn:hover{transform: translateY(-2px); filter: brightness(1.1)}
 
-.nav .btn.pill{
-  border-radius:999px; background: rgba(255,255,255,0.06); padding:8px 14px; color: rgba(255,255,255,0.9);
-  border:1px solid rgba(255,255,255,0.06); backdrop-filter: blur(4px);
+.nav ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
 }
-.nav .btn.pill:hover{ background: rgba(255,255,255,0.12); transform: translateY(-3px)}
-.nav .btn.pill:focus{ outline: 3px solid rgba(255,255,255,0.12); outline-offset: 2px}
-.nav .btn.pill.active{ background: linear-gradient(135deg,var(--accent),var(--accent2)); border: 1px solid rgba(255,255,255,0.15); color: #fff; box-shadow: 0 8px 18px rgba(0,0,0,0.25)}
 
-/* Underline animation */
-.nav .btn.pill::after{ content:""; position:absolute; left:12px; right:12px; bottom:-6px; height:2px; background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); transform-origin: left center; transform: scaleX(0); transition: transform .28s cubic-bezier(.2,.9,.2,1)}
-.nav .btn.pill:hover::after, .nav .btn.pill.active::after{ transform: scaleX(1)}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  padding: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-/* Text clarity and animation */
-.nav .btn{ font-weight:600; letter-spacing:.2px; color: rgba(255,255,255,0.95); text-shadow: 0 1px 0 rgba(0,0,0,0.2)}
-.nav .brand{ color: #fff }
+.nav-toggle:hover {
+  transform: scale(1.1);
+}
 
-/* Staggered fade-in animation for nav items */
-.nav ul li{ opacity:0; transform: translateY(-6px); animation: navItemIn .5s forwards ease; }
-.nav ul li:nth-child(1){ animation-delay: .12s }
-.nav ul li:nth-child(2){ animation-delay: .18s }
-.nav ul li:nth-child(3){ animation-delay: .24s }
-.nav ul li:nth-child(4){ animation-delay: .3s }
-.nav ul li:nth-child(5){ animation-delay: .36s }
-@keyframes navItemIn{ to{ opacity:1; transform: translateY(0) } }
+.nav-toggle:focus {
+  outline: 3px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+}
 
-/* Accent focus indicator for keyboard users */
-.nav .btn:focus-visible{ box-shadow: 0 0 0 4px rgba(102,0,153,0.18)}
+/* Navigation buttons */
+.nav .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
 
-/* শেপ বাটন স্টাইল */
-.btn.heart{background: linear-gradient(135deg,#ff5e8a,#ff2e63)}
-.btn.moon{background: linear-gradient(135deg,#6a0572,#3b2a98)}
-.btn.love{background: linear-gradient(135deg,#ff7eb3,#ff758c)}
+.nav .btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
 
-/* গ্লাসমরফিজম কার্ড */
-.glass{
+.nav .btn.pill {
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  padding: 8px 14px;
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(4px);
+  transition: 0.28s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.nav .btn.pill:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-3px);
+}
+
+.nav .btn.pill:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.3);
+  outline-offset: 2px;
+}
+
+.nav .btn.pill.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+/* Glassmorphism cards */
+.glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-brd);
   backdrop-filter: blur(12px);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* হিরো */
-.hero{
-  display:grid; grid-template-columns: 1.2fr .8fr; gap:24px;
-  padding:60px 24px; align-items:center; min-height: clamp(420px, 60vh, 760px);
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  padding: clamp(40px, 8vw, 80px) 24px;
+  align-items: center;
+  min-height: clamp(420px, 60vh, 760px);
 }
-.hero h1{
-  margin:0 0 8px 0; font-size:clamp(32px,6vw,60px); color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,.4);
+
+.hero h1 {
+  margin: 0 0 8px 0;
+  font-size: clamp(32px, 6vw, 60px);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  line-height: 1.2;
 }
-.tagline{ font-size: clamp(.95rem, 3.2vw, 1.05rem); line-height:1.35 }
-.quote{ font-size: clamp(.95rem, 3.4vw, 1.05rem); line-height:1.45 }
-.hero .tagline{ margin-top:6px; font-size: clamp(.95rem, 3.2vw, 1.1rem); opacity: .95 }
-.tagline{color:#ffe8f0}
-.quote{margin-top:10px; font-size:1.1rem; color:#fff}
-.cta-group{display:flex; gap:12px; margin-top:18px}
 
-/* CTA: icon + text style for clarity and animation */
-.cta-group .btn{ position:relative; padding:10px 16px 10px 20px; display:inline-flex; align-items:center; gap:10px; font-weight:700 }
-.cta-group .btn svg{ width:20px; height:20px; flex-shrink:0; fill: currentColor; transition: transform .22s ease, opacity .22s ease }
-.cta-group .btn .label{ display:inline-block }
-
-/* Stronger contrast for icon color on gradient backgrounds */
-.cta-group .btn.heart{ color: #fff }
-.cta-group .btn.moon{ color: #fff }
-.cta-group .btn.love{ color: #fff }
-
-/* Hover/focus: subtle lift and icon pop */
-.cta-group .btn:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 26px rgba(0,0,0,0.18) }
-.cta-group .btn:hover svg{ transform: translateY(-3px) scale(1.08) }
-.cta-group .btn:focus-visible{ outline: 2px solid rgba(255,255,255,0.14); outline-offset: 4px }
-
-/* Create an accent border for CTA icons */
-.cta-group .btn::before{ content: ''; position:absolute; left:10px; top:8px; bottom:8px; width: 3px; border-radius: 6px; transform-origin: left; opacity: 0.16 }
-.cta-group .btn.heart::before{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35)) }
-.cta-group .btn.moon::before{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35)) }
-.cta-group .btn.love::before{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35)) }
-
-/* small active animation */
-.cta-group .btn:active{ transform: translateY(-1px) scale(0.995) }
-
-/* If you want icons to tint differently on hover for accent */
-.cta-group .btn.heart:hover svg{ filter: drop-shadow(0 6px 10px rgba(255,105,150,0.25)) }
-.cta-group .btn.moon:hover svg{ filter: drop-shadow(0 6px 14px rgba(120,100,255,0.15)) }
-.cta-group .btn.love:hover svg{ filter: drop-shadow(0 6px 14px rgba(255,120,160,0.2)) }
-
-.hero-portrait{
-  display:flex; align-items:center; justify-content:center;
+.hero-content h2 {
+  margin-top: 16px;
+  font-size: clamp(18px, 5vw, 32px);
+  color: rgba(255,255,255,0.95);
 }
-.hero-portrait img{
-  width: clamp(170px, 28vw, 320px); height: clamp(170px, 28vw, 320px); object-fit: cover;
+
+.tagline {
+  font-size: clamp(0.95rem, 3.2vw, 1.05rem);
+  line-height: 1.35;
+  color: #ffe8f0;
+  margin-top: 6px;
+  opacity: 0.95;
+}
+
+.quote {
+  font-size: clamp(0.95rem, 3.4vw, 1.05rem);
+  line-height: 1.45;
+  color: #fff;
+  margin-top: 10px;
+}
+
+/* CTA Group */
+.cta-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.cta-group .btn {
+  position: relative;
+  padding: 10px 16px 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.22s ease;
+}
+
+.cta-group .btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: currentColor;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.cta-group .btn.heart {
+  background: linear-gradient(135deg, #ff5e8a, #ff2e63);
+  color: #fff;
+}
+
+.cta-group .btn.moon {
+  background: linear-gradient(135deg, #6a0572, #3b2a98);
+  color: #fff;
+}
+
+.cta-group .btn.love {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: #fff;
+}
+
+.cta-group .btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.18);
+}
+
+.cta-group .btn:hover svg {
+  transform: translateY(-3px) scale(1.08);
+}
+
+.cta-group .btn:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.3);
+  outline-offset: 4px;
+}
+
+.cta-group .btn:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+/* CTA Icon accent */
+.cta-group .btn::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 6px;
+  opacity: 0.16;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35));
+}
+
+.cta-group .btn.heart:hover svg {
+  filter: drop-shadow(0 6px 10px rgba(255,105,150,0.25));
+}
+
+.cta-group .btn.moon:hover svg {
+  filter: drop-shadow(0 6px 14px rgba(120,100,255,0.15));
+}
+
+.cta-group .btn.love:hover svg {
+  filter: drop-shadow(0 6px 14px rgba(255,120,160,0.2));
+}
+
+/* Hero Portrait */
+.hero-portrait {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-portrait img {
+  width: clamp(170px, 28vw, 320px);
+  height: clamp(170px, 28vw, 320px);
+  object-fit: cover;
   border-radius: 24px;
-  border: 4px solid rgba(255,255,255,.7);
-  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  border: 4px solid rgba(255,255,255,0.7);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
   animation: floatY 6s ease-in-out infinite;
 }
-@keyframes floatY{
-  0%,100%{transform: translateY(0)}
-  50%{transform: translateY(-10px)}
-}
 
-/* ফিচার্স */
-.features{display:grid; grid-template-columns: repeat(3,1fr); gap:18px; padding:24px}
-.card{padding:18px; color:#fff}
-.card h3{margin:0 0 8px 0}
-
-/* কন্টেইনার/গ্রিড */
-.container{max-width:1000px; margin:30px auto; padding:24px}
-.grid.two{display:grid; grid-template-columns:1fr 1fr; gap:24px}
-.info{list-style:none; padding:0; margin:0}
-.info li{margin:8px 0}
-
-/* এবাউট ভিজুয়াল শেপ */
-.shape{position:relative; width:180px; height:180px; margin:10px auto}
-.heart-shape{
-  background: linear-gradient(135deg,#ff758c,#ff1b6b);
-  transform: rotate(45deg);
-  border-radius: 24px;
-}
-.heart-shape::before, .heart-shape::after{
-  content:""; position:absolute; width:180px; height:180px; border-radius:50%;
-  background: inherit;
-}
-.heart-shape::before{ top:-90px; left:0 }
-.heart-shape::after{ left:-90px; top:0 }
-.moon-shape{
-  width:160px; height:160px; border-radius:50%;
-  background: radial-gradient(120px 120px at 40% 40%, #fff8, #fff0),
-              #c0c0ff;
-  box-shadow: inset -20px -10px 40px #99aaff, 0 10px 30px rgba(0,0,0,.2);
-  position:relative;
-}
-.moon-shape::after{
-  content:""; position:absolute; width:160px; height:160px; border-radius:50%;
-  background: radial-gradient(60px 60px at 70% 60%, rgba(0,0,0,.2), transparent 60%);
-  left:-28px; top:-6px; /* ডার্ক সাইড দিয়ে ক্রিসেন্ট ইফেক্ট */
-}
-.pulse{animation: pulse 2.6s infinite}
-@keyframes pulse{
-  0%,100%{transform: rotate(45deg) scale(1)}
-  50%{transform: rotate(45deg) scale(1.05)}
-}
-.glow{animation: glow 5s ease-in-out infinite}
-@keyframes glow{
-  0%,100%{box-shadow: inset -20px -10px 40px #99aaff, 0 0 20px #ffe}
-  50%{box-shadow: inset -10px -5px 30px #b4b8ff, 0 0 40px #fff}
-}
-
-/* গ্যালারি মেসনারি */
-.masonry{
-  columns: 3 280px; column-gap: 16px; padding: 8px;
-}
-.tile{break-inside: avoid; margin-bottom:16px; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.tile img{width:100%; display:block}
-.tile.wide img{aspect-ratio: 16/9; object-fit: cover}
-.tile.tall img{aspect-ratio: 3/4; object-fit: cover}
-/* Ensure embedded iframes (e.g., Facebook video) fit tiles and maintain aspect ratio */
-.tile iframe{ width:100%; height:auto; display:block; aspect-ratio: 16/9; border:0; }
-/* Ensure local HTML5 video fits tiles and maintain aspect ratio */
-.tile video{ width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover; }
-
-/* Modern video gallery */
-.video-gallery{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding: 18px; max-width: 1200px; margin: 18px auto }
-.video-card{ background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow:hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.18); display:flex; flex-direction:column; gap:8px }
-.video-card{ transition: transform .42s cubic-bezier(.2,.9,.2,1), box-shadow .3s ease, filter .3s ease; }
-.video-card:hover{ transform: translateY(-6px); box-shadow: 0 26px 70px rgba(0,0,0,0.38); filter: saturate(1.06) contrast(1.03) }
-.video-card video{
-  width: 100%;
-  height: auto; /* Let aspect-ratio dictate the height so proportions remain correct */
-  aspect-ratio: 16/9; /* consistent preview size for all videos */
-  object-fit: contain; /* preserve whole video frame without cropping */
-  object-position: center center; /* center the video within its frame */
-  display: block;
-  background: #000;
-}
-
-/* Featured romantic hero video style */
-.video-card.featured{ grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; border-radius: 18px; overflow: hidden; position: relative }
-.video-card.featured video{ aspect-ratio: 21/9; height: auto; object-fit: cover; display:block }
-.video-card.featured::after{ content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,20,80,0.1)); mix-blend-mode: screen; pointer-events:none }
-.video-card.featured .meta{ position:absolute; right: 20px; bottom: 22px; left: 22px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18)); padding:18px; border-radius:12px; color:#fff; display:flex; flex-direction:column; gap:6px }
-.video-card.featured .meta h3{ font-size:1.4rem; margin:0; color:#fff; text-shadow:0 8px 30px rgba(0,0,0,0.5) }
-.video-card.featured .meta p{ margin:0; color:rgba(255,255,255,0.9) }
-.video-card.featured .big-play{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:86px; height:86px; border-radius:50%; background: linear-gradient(135deg,#ff7eb3,#ff2e63); display:flex; align-items:center; justify-content:center; font-size:34px; color:#fff; border:none; box-shadow: 0 12px 40px rgba(255,46,99,0.16) }
-.video-card.featured .big-play:hover{ transform: translate(-50%,-50%) scale(1.02) }
-.video-card.featured .romantic-accents{ position:absolute; left: 8px; top: 8px; right: auto; pointer-events:none }
-.video-card.featured .romantic-accents .heart{ display:inline-block; width:22px; height:22px; background: linear-gradient(135deg,#ff8fb2,#ffc3a0); transform: rotate(45deg); border-radius:6px; box-shadow: 0 8px 30px rgba(255,100,140,0.14); }
-/* heart pulse */
-.video-card.featured .romantic-accents .heart{ animation: heartBeat 1600ms cubic-bezier(.2,.8,.25,1) infinite }
-@keyframes heartBeat{ 0%{ transform: scale(.94) rotate(45deg) } 40%{ transform: scale(1.06) rotate(45deg) } 100%{ transform: scale(.94) rotate(45deg) } }
-
-/* hide small control buttons on featured hero */
-.video-card.featured .actions{ display: none }
-
-/* warmed romantic color grading */
-.video-card.featured video{ filter: saturate(1.1) brightness(1.02) contrast(1.04) sepia(0.04) }
-
-/* Make gallery responsive: featured takes full-width on small screens */
-@media (max-width:900px){
-  .video-gallery{ grid-template-columns: 1fr }
-  .video-card.featured{ grid-column: auto; }
-  .video-card.featured .meta{ left: 12px; right:12px; bottom: 12px }
-  /* Mobile nav toggle */
-  .nav-toggle{ display:block }
-  .nav ul{ position: absolute; right: 12px; top: 64px; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); box-shadow:0 8px 30px rgba(0,0,0,.4); padding:12px; flex-direction:column; gap:8px; border-radius:12px; display:none; z-index: 1000 }
-  .nav.open ul{ display:flex }
-  .nav ul li a{ display:block }
-  /* Adjust mobile nav spacing */
-  .nav{ padding:10px 16px }
-  .nav .brand{ font-size: 1.05rem }
-  .nav ul li{ opacity:1; transform:none; }
-  /* Quick action button */
-  .mobile-contact{ display:block; position: fixed; right: 12px; bottom: 12px; z-index: 100000; padding:12px 16px; border-radius:28px; background: linear-gradient(135deg,#ff6fa8,#ff2e63); color:#fff; text-decoration:none; box-shadow: 0 12px 30px rgba(0,0,0,0.25); font-weight:700 }
-  .hero{grid-template-columns: 1fr; text-align:center; padding: 40px 18px }
-  .hero h1{ font-size: clamp(28px, 8vw, 44px) }
-  .hero-portrait img{ width: 220px; height: 220px }
-  .cta-group .btn{ padding: 12px 18px; font-size: 0.95rem }
-}
-.video-card .meta{ padding: 12px; display:flex; flex-direction:column; gap:8px }
-.video-card .meta h3{ margin: 0; font-size: 1rem; color: #fff }
-.video-card .meta p{ margin:0; font-size: 0.9rem; color: rgba(255,255,255,0.75) }
-.video-card .actions{ display:flex; gap:8px; padding: 12px; border-top: 1px solid rgba(255,255,255,0.03); justify-content:space-between }
-.video-card .btn{ padding:8px 10px; border-radius:8px; background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color: #fff; font-weight:600; cursor:pointer }
-
-/* Modal / Lightbox */
-.video-modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999; background: rgba(0,0,0,0.72) }
-.video-modal.open{ display:flex }
-.video-modal .inner{ width: min(1100px, 95vw); max-height: 86vh; background: #000; border-radius: 12px; overflow:hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.65) }
-.video-modal .inner video{
-  width: 100%;
-  height: auto; /* keep correct proportions */
-  aspect-ratio: 16/9;
-  object-fit: contain; /* prevent modal distortion */
-  object-position: center center;
-  display: block; background:#000 }
-.video-modal .controls{ display:flex; justify-content:flex-end; gap:8px; padding:10px }
-.video-modal .controls .btn{ background: rgba(255,255,255,0.06); color:#fff; padding:8px 12px; border-radius:8px; border: none }
-
-@media (max-width: 680px){
-  /* Preserve aspect ratio on smaller screens */
-  .video-card video{ aspect-ratio: 16/9; width: 100%; height: auto }
-  .video-modal .inner{ width: 95vw }
-}
-
-/* ফর্ম */
-.form{display:grid; gap:14px}
-.form-row{display:grid; gap:6px}
-input, textarea{
-  padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.5);
-  background: rgba(255,255,255,.2); color:#fff; outline:none;
-}
-input::placeholder, textarea::placeholder{color:#f8e6ed}
-.form-note{margin-top:8px; color:#ffe8f0}
-
-/* ফুটার */
-.footer{margin:24px; padding:14px; text-align:center; color:#fff}
-
-/* ফ্লোটিং শেপ ব্যাকগ্রাউন্ড */
-#floating-shapes{position:fixed; inset:0; pointer-events:none; z-index:0}
-.f-shape{
-  position:absolute; opacity:.7; filter: blur(.2px);
-  animation: drift var(--dur) linear infinite;
-}
-@keyframes drift{
-  0%{ transform: translateY(0) translateX(0) rotate(0deg); opacity:.9}
-  100%{ transform: translateY(-120vh) translateX(20vw) rotate(360deg); opacity:0}
-}
-
-/* Floating SORRY text that drifts like the shapes */
-.f-sorry{
-  position:absolute; display:inline-block; pointer-events:none; white-space:nowrap; opacity:.95;
-  font-weight:800; font-family: 'Poppins','Noto Sans Bengali', system-ui; text-transform:uppercase;
-  color: #ffffff; text-shadow: 0 6px 18px rgba(0,0,0,.45);
-  animation: drift var(--dur, 9000ms) linear forwards;
-  transform-origin:center;
-  z-index: 5; /* above the background floating shapes but below overlays */
-}
-.f-sorry.small{ font-size: 18px; letter-spacing: 0.06em }
-.f-sorry.medium{ font-size: 28px; letter-spacing: 0.04em }
-.f-sorry.large{ font-size: 44px; letter-spacing: 0.02em }
-.f-sorry.gradient{ background: linear-gradient(90deg, #ffd1dc, #ff8fb2, #ff2e63); -webkit-background-clip:text; background-clip:text; color:transparent }
-.f-sorry.subtle{ color: rgba(255,255,255,0.92) }
-
-/* রেসপন্সিভ */
-@media (max-width:900px){
-  .hero{grid-template-columns: 1fr; text-align:center}
-  .features{grid-template-columns:1fr}
-  .grid.two{grid-template-columns:1fr}
-  .cta-group{justify-content:center}
-}
-
-/* Piu overlay animation - non-intrusive, transparent backdrop */
-.piu-overlay{
-  position: fixed; inset: 0; z-index: 9999; display:flex; align-items:center; justify-content:center;
-  pointer-events: none; /* don't block underlying content, message can still be clicked */
-}
-.piu-message{
-  pointer-events: auto; /* only the message consumes pointer events */
-  font-weight:900; font-family: 'Poppins', 'Noto Sans Bengali', system-ui; text-transform:none;
-  font-size: clamp(42px, 9vw, 120px); line-height: 1; letter-spacing: 0.03em;
-  /* colorful gradient for modern look */
-  background: linear-gradient(90deg,#ff7eb3,#ff2e63,#6a0572,#4d9cff);
-  -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  display: inline-flex; gap: 6px; align-items:center; justify-content:center;
-}
-.piu-message span{ display:inline-block; transform-origin: center; opacity: 0; filter: blur(6px);}
-
-/* per-letter pop animation */
-@keyframes piuPop{
-  0%{ transform: translateY(70px) rotateX(25deg) scale(.88); opacity:0; filter: blur(8px) }
-  45%{ transform: translateY(-8px) rotateX(0deg) scale(1.06); opacity:1; filter: blur(0) }
-  100%{ transform: translateY(0px) rotateX(0deg) scale(1); opacity:1; filter: blur(0) }
-}
-
-.piu-message span{ animation: piuPop .9s cubic-bezier(.2,.8,.25,1) both; }
-.piu-message span:nth-child(1) { animation-delay: 0.02s }
-.piu-message span:nth-child(2) { animation-delay: 0.06s }
-.piu-message span:nth-child(3) { animation-delay: 0.1s }
-.piu-message span:nth-child(4) { animation-delay: 0.14s }
-.piu-message span:nth-child(5) { animation-delay: 0.18s }
-.piu-message span:nth-child(6) { animation-delay: 0.22s }
-.piu-message span:nth-child(7) { animation-delay: 0.26s }
-.piu-message span:nth-child(8) { animation-delay: 0.3s }
-.piu-message span:nth-child(9) { animation-delay: 0.34s }
-.piu-message span:nth-child(10) { animation-delay: 0.38s }
-
-/* small scale out and fade after the pop, to avoid lingering */
-.piu-overlay.fade-out .piu-message{ transform: scale(.9); opacity:.0; transition: opacity .32s ease, transform .32s ease }
-
-/* reduce size on small screens */
-@media (max-width:460px){
-  .piu-message{ font-size: clamp(26px, 8vw, 48px) }
-}
-
-/* "Sorry" rain effect (Matrix-style drops that say 'sorry') */
-.sorry-rain{
-  position: fixed; inset: 0; z-index: 9998; pointer-events: none; display: block; overflow: visible;
-}
-.sorry-rain .column{position:absolute; left:0; top:0; bottom:0; width: 0;}
-.sorry-rain .drop{
-  position: absolute; white-space: nowrap; pointer-events: none; font-weight: 700;
-  font-family: 'Poppins', 'Noto Sans Bengali', system-ui; font-size: clamp(14px, 2.6vw, 36px);
-  color: rgba(255,255,255,0.98); mix-blend-mode: screen; text-shadow: 0 2px 10px rgba(0,0,0,0.45);
-  transform-origin: left top;
-  opacity: 0; transform: translateY(-20vh) rotate(-6deg) scale(.9);
-  animation: sorryFall var(--duration, 1800ms) linear forwards;
-}
-@keyframes sorryFall{
-  0%{ opacity:0; transform: translateY(-20vh) rotate(-6deg) scale(.96)}
-  15%{ opacity:.95 }
-  80%{ opacity:.95 }
-  100%{ opacity:0; transform: translateY(120vh) rotate(8deg) scale(1.02)}
-}
-
-/* color variants, only subtle so it doesn't clash */
-.sorry-rain .drop.variant-1{ color: #fff }
-.sorry-rain .drop.variant-2{ color: rgba(255,140,153,0.92) }
-.sorry-rain .drop.variant-3{ color: rgba(190,150,255,0.95) }
-.sorry-rain .drop.variant-4{ color: rgba(120,200,255,0.95) }
-
-/* reduce intensity on mobile */
-@media (max-width:900px){
-  .sorry-rain .drop{ font-size: clamp(12px, 4.4vw, 34px) }
-}
-
-/* Reduce decorative background/shapes and animations on small screens for better performance */
-@media (max-width:680px){
-  #floating-shapes{ display:none }
-  .f-shape{ display:none }
-}
-
-/* small fade-out control if needed */
-.sorry-rain.fade-out{ opacity: .0; transition: opacity .4s ease }
-
-/* Continuous Sorry Rain toggle button */
-.sorry-toggle{
-  position: fixed; right: 18px; bottom: 18px; z-index: 10001; padding: 10px 14px; border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); color:#fff; border: 1px solid rgba(255,255,255,0.08);
-  font-weight:600; cursor:pointer; backdrop-filter: blur(8px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-}
-.mobile-contact{ display:none }
-.sorry-toggle.active{ background: linear-gradient(90deg,#ff7eb3,#ff2e63); color:#fff; border: none; box-shadow: 0 14px 40px rgba(255, 120, 160, 0.18) }
-.sorry-toggle:hover{ transform: translateY(-4px); }
-
-
-/* SORRY flowers/leaves overlay */
-.sf-overlay{ position: fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:99999; pointer-events:none }
-.sf-overlay .sf-inner{ position:relative; text-align:center; pointer-events:auto }
-.sf-word{ font-family: 'Poppins', 'Noto Sans Bengali', system-ui; font-weight:900; color: transparent; font-size: clamp(48px, 10vw, 160px); letter-spacing: .06em; background: linear-gradient(90deg,#ff7eb3 0%, #ffd1dc 50%, #f6f7ff 100%); -webkit-background-clip: text; background-clip: text; text-shadow: 0 8px 28px rgba(0,0,0,.35) }
-.sf-letter{ display:inline-block; opacity:0; transform-origin:center;}
-
-/* entry pop for the SORRY text */
-@keyframes sfPop{ 0%{ transform: translateY(-40px) rotate(-6deg) scale(.86); opacity:0 } 55%{ transform: translateY(8px) rotate(2deg) scale(1.06); opacity:1 } 100%{ transform: translateY(0) rotate(0) scale(1); opacity:1 } }
-.sf-letter{ animation: sfPop .7s cubic-bezier(.2,.8,.25,1) both }
-.sf-letter:nth-child(1){ animation-delay: .06s }
-.sf-letter:nth-child(2){ animation-delay: .12s }
-.sf-letter:nth-child(3){ animation-delay: .18s }
-.sf-letter:nth-child(4){ animation-delay: .24s }
-.sf-letter:nth-child(5){ animation-delay: .32s }
-.sf-letter:nth-child(6){ animation-delay: .38s }
-
-/* falling flowers/leaves */
-.sf-flower{ position: fixed; top:-10vh; pointer-events:none; opacity:0; transform: translateY(-20vh) rotate(0deg); animation: sfFall var(--sf-duration, 4200ms) linear forwards; will-change: transform, opacity }
-@keyframes sfFall{
-  0%{ transform: translateY(-30vh) rotate(0deg) scale(.9); opacity:0 }
-  10%{ opacity:1 }
-  50%{ transform: translateY(50vh) rotate(240deg) scale(1.04); opacity:1 }
-  90%{ opacity:0.6 }
-  100%{ transform: translateY(120vh) rotate(420deg) scale(.98); opacity:0 }
-}
-
-.sf-flower.variant-1{ color: #ff8fb2; filter: drop-shadow(0 8px 20px rgba(100,0,50,0.12)) }
-.sf-flower.variant-2{ color: #f6e3c0; filter: drop-shadow(0 8px 20px rgba(80,60,0,0.08)) }
-.sf-flower.variant-3{ color: #96c4ff; filter: drop-shadow(0 8px 20px rgba(0,40,100,0.08)) }
-.sf-flower.variant-4{ color: #ffd1e6; filter: drop-shadow(0 8px 20px rgba(120,40,80,0.1)) }
-
-/* a small glow pop on top when they appear */
-.sf-flower::before{ content:''; position:absolute; inset:0; border-radius:8px; }
-
-/* responsive adjustments */
-@media (max-width:900px){
-  .sf-word{ font-size: clamp(42px, 14vw, 88px) }
-}
-
-.sf-overlay.fade-out{ transition: opacity .36s ease; opacity: 0 }
-
-/* Inline SORRY block in hero */
-.sorry-inline{
-  display:inline-block; margin-top:12px; font-family:'Poppins','Noto Sans Bengali', system-ui; font-weight:900;
-  letter-spacing: .06em; font-size: clamp(26px, 3.6vw, 50px); color: transparent;
-  -webkit-background-clip: text; background-clip: text; background: linear-gradient(90deg, #ffd1dc, #ff2e63);
-  text-shadow: 0 6px 18px rgba(0,0,0,.28); transform-origin:center; cursor:default;
-}
-.sorry-inline .sf-letter{ display:inline-block; opacity:0; transform: translateY(-8px);}
-.sorry-inline .sf-letter.pop{ animation: sfPop .68s cubic-bezier(.2,.8,.25,1) both }
-
-/* Decorative underline on hover */
-.sorry-inline:hover{ filter: drop-shadow(0 6px 22px rgba(255, 70, 120, 0.12)); }
-
-@media (max-width:900px){
-  .sorry-inline{ font-size: clamp(20px, 6.8vw, 36px) }
-}
-
-/* External-referrer apology overlay */
-.external-ref-overlay{ position: fixed; inset:0; z-index: 100001; display:flex; align-items:center; justify-content:center; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)); }
-.external-ref-overlay .extern-inner{ width: min(720px, 92vw); padding: 18px; border-radius: 14px; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.06); text-align:center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
-.external-ref-overlay .extern-inner h2{ margin: 0 0 8px 0; font-size: clamp(20px, 4.8vw, 36px); color: #fff; }
-.external-ref-overlay .extern-inner p{ margin: 0 0 14px 0; color: rgba(255,255,255,0.9); font-size: 1rem }
-.external-ref-overlay .extern-controls{ display:flex; gap: 12px; justify-content:center; align-items:center }
-.external-ref-overlay .extern-controls .btn{ padding:10px 14px; border-radius:12px; color:#fff; border:none; cursor:pointer; font-weight:700 }
-.external-ref-overlay .extern-controls .close-extern{ background: rgba(255,255,255,0.06) }
-.external-ref-overlay.fade-out{ opacity: 0; transition: opacity .36s ease }
-
-@media (max-width: 520px){
-  .external-ref-overlay .extern-inner{ padding: 12px }
-  .external-ref-overlay .extern-inner h2{ font-size: clamp(18px, 6vw, 26px) }
-}
-
-/* OK button style (primary action) */
-.external-ref-overlay .extern-controls .ok-extern{ background: linear-gradient(90deg,#6a0572,#ff2e63); border: none; color: #fff }
-.external-ref-overlay .extern-controls .ok-extern:hover{ transform: translateY(-2px); }
-.video-card video.portrait{ aspect-ratio: 3/4; }
-
-/* Overlay for enabling sound on gallery video */
-.sound-enable-overlay{ position: fixed; inset: 0; z-index: 100002; display:flex; align-items:center; justify-content:center; background: linear-gradient(0deg, rgba(0,0,0,0.55), rgba(0,0,0,0.6)); }
-.sound-enable-overlay .sound-inner{ padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); text-align:center; color:#fff }
-.sound-enable-overlay .sound-inner p{ margin:0 0 12px 0 }
-.sound-enable-overlay .sound-controls{ display:flex; gap:10px; justify-content:center }
-.sound-enable-overlay .sound-controls .btn{ padding:8px 12px; border-radius:8px; background: linear-gradient(90deg,#ff7eb3,#ff2e63); border:none; color:#fff }
-.sound-enable-overlay .sound-controls .sound-close{ background: rgba(255,255,255,0.06); color:#fff }
-=======
-/* ফন্ট সেটআপ */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
-
-:root{
-  --bg1:#ffdde1;
-  --bg2:#ee9ca7;
-  --accent:#d6336c;
-  --accent2:#6a0572;
-  --glass-bg:rgba(255,255,255,0.18);
-  --glass-brd:rgba(255,255,255,0.4);
-  --text:#2b2b2b;
-}
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #fce4ec, #fff);
-  overflow-x: hidden; /* allow vertical scroll */
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.sorry {
-  position: absolute;
-  top: -50px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #e91e63;
-  opacity: 0.9;
-  animation: fall linear forwards;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(50vh) rotate(90deg);
+    transform: translateY(-10px);
+  }
+}
+
+/* Sorry inline animation */
+.sorry-inline {
+  font-size: clamp(24px, 8vw, 72px);
+  font-weight: bold;
+  color: rgba(255, 46, 99, 0.3);
+  margin: 20px 0;
+  text-align: center;
+  letter-spacing: 4px;
+  animation: sorryFloat 3s ease-in-out infinite;
+}
+
+@keyframes sorryFloat {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-8px);
+  }
+}
+
+/* Features Section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 18px;
+  color: #fff;
+  text-align: center;
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  font-size: clamp(18px, 4vw, 24px);
+}
+
+.card p {
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.5;
+}
+
+/* Container / Layout */
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 24px;
+}
+
+.grid.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Footer */
+.footer {
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  margin-top: 40px;
+  font-size: clamp(14px, 3vw, 18px);
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* Floating Shapes */
+#floating-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#floating-shapes div {
+  position: absolute;
+  opacity: 0.08;
+  animation: float 6s infinite ease-in-out;
+  border-radius: 50%;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+/* Mobile Contact CTA */
+.mobile-contact {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 100000;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: 0.3s;
+  display: none;
+  border: none;
+  cursor: pointer;
+  font-size: clamp(12px, 3vw, 14px);
+}
+
+.mobile-contact:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.mobile-contact:active {
+  transform: scale(0.95);
+}
+
+/* =============== MOBILE RESPONSIVENESS =============== */
+
+/* Tablet Breakpoint (900px) - Hide nav toggle, show full nav */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-brd);
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
+    display: none;
+    z-index: 999;
+  }
+
+  .nav.open ul {
+    display: flex;
+  }
+
+  .nav ul li {
+    width: 100%;
+  }
+
+  .nav ul .btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 24px;
+    border-radius: 0;
+  }
+
+  .nav ul .btn.pill {
+    background: transparent;
+    border: none;
+    padding: 12px 24px;
+  }
+
+  .nav ul .btn.pill:hover {
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* Hero layout for tablet */
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 40px 20px;
+  }
+
+  .hero-portrait {
+    order: -1;
+  }
+
+  /* Features grid */
+  .features {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Grid layout */
+  .grid.two {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide floating shapes on smaller devices for performance */
+  #floating-shapes {
+    display: none;
+  }
+}
+
+/* Mobile Breakpoint (680px) */
+@media (max-width: 680px) {
+  body {
+    font-size: 14px;
+  }
+
+  .nav {
+    padding: 10px 16px;
+  }
+
+  .nav .brand {
+    font-size: clamp(12px, 3vw, 16px);
+  }
+
+  .nav ul .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 30px 16px;
+    min-height: auto;
+  }
+
+  .hero h1 {
+    margin-bottom: 4px;
+  }
+
+  .hero-portrait img {
+    margin-top: 16px;
+  }
+
+  .cta-group {
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .cta-group .btn {
+    padding: 8px 12px 8px 16px;
+    font-size: 12px;
+  }
+
+  .cta-group .btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cta-group .btn .label {
+    display: none;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 12px;
+  }
+
+  .container {
+    padding: 16px;
+    margin: 20px auto;
+  }
+
+  .masonry {
+    grid-template-columns: 1fr !important;
+  }
+
+  .masonry .tile {
+    height: auto !important;
+  }
+
+  .masonry .tile.tall,
+  .masonry .tile.wide {
+    height: auto !important;
+  }
+
+  .footer {
+    margin-top: 30px;
+    padding: 16px;
+  }
+
+  /* Show mobile contact CTA on small screens */
+  .mobile-contact {
+    display: block;
+  }
+
+  /* Video gallery responsiveness */
+  .video-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .video-card.featured {
+    grid-column: 1;
+  }
+}
+
+/* Ultra-small devices (below 480px) */
+@media (max-width: 480px) {
+  .hero {
+    padding: 20px 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 40px);
+  }
+
+  .tagline, .quote {
+    font-size: 13px;
+  }
+
+  .cta-group {
+    gap: 6px;
+  }
+
+  .nav {
+    padding: 8px 12px;
+  }
+
+  .features {
+    padding: 12px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .nav, .mobile-contact, #floating-shapes {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 0;
+  }
+}
+
+/* Masonry Gallery Layout */
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 0;
+}
+
+.tile {
+  background: var(--glass-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s ease;
+  height: 240px;
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+.tile img, .tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tile.tall {
+  grid-row: span 2;
+  height: 500px;
+}
+
+.tile.wide {
+  grid-column: span 2;
+}
+
+/* Video gallery specific styles */
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-card {
+  position: relative;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+
+.video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-card.featured {
+  grid-column: 1 / -1;
+  aspect-ratio: 21/9;
+  position: relative;
+}
+
+.video-card.featured video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Featured video big play button */
+.big-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 86px;
+  height: 86px;
+  background: linear-gradient(135deg, #ff7eb3, #ff2e63);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: white;
+  z-index: 10;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 24px rgba(255, 46, 99, 0.4);
+}
+
+.big-play:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 12px 32px rgba(255, 46, 99, 0.6);
+}
+
+/* Romantic accents */
+.romantic-accents {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
     opacity: 0.8;
   }
-  100% {
-    transform: translateY(100vh) rotate(180deg);
-    opacity: 0;
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
   }
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-  margin:0;
-  color:var(--text);
-  font-family:'Noto Sans Bengali','Poppins',system-ui,Segoe UI,sans-serif;
-  background:
-    linear-gradient(120deg, rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    linear-gradient(135deg, var(--bg1), var(--bg2));
-  overflow-x:hidden;
+/* Sound enable overlay */
+.sound-enable-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
 }
 
-/* পেজভিত্তিক ব্যাকগ্রাউন্ড ও ইমেজ ব্লেন্ড */
-.page-home{
-  background-image:
-    linear-gradient(120deg, rgba(255, 153, 204, 0.35), rgba(102, 0, 153, 0.35)),
-    url('prapti-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay;
+.sound-enable-overlay p {
+  color: #fff;
+  font-size: clamp(14px, 4vw, 18px);
+  text-align: center;
+  max-width: 300px;
+  margin: 0;
 }
 
-.page-about, .page-gallery, .page-contact{
-  background-image:
-    radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.35), transparent 60%),
-    linear-gradient(135deg, #f9c5d1, #9795f0);
+.sound-enable-overlay button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
 }
 
-/* ন্যাভ */
-.nav{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 24px; position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+.sound-enable-overlay .btn-enable {
+  background: linear-gradient(135deg, #ff7eb3, #ff2e63);
+  color: white;
 }
-.nav .brand{font-weight:700; letter-spacing:.5px; color:#fff}
-.nav ul{display:flex; gap:10px; list-style:none; margin:0; padding:0}
 
-.nav .btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:10px 16px; color:#fff; text-decoration:none; position:relative; transition:.3s;
+.sound-enable-overlay .btn-enable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 46, 99, 0.4);
 }
-.btn:hover{transform: translateY(-2px); filter: brightness(1.1)}
 
-.nav .btn.pill{
-  border-radius:999px; background: rgba(255,255,255,0.06); padding:8px 14px; color: rgba(255,255,255,0.9);
-  border:1px solid rgba(255,255,255,0.06); backdrop-filter: blur(4px);
+.sound-enable-overlay .btn-close {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
-.nav .btn.pill:hover{ background: rgba(255,255,255,0.12); transform: translateY(-3px)}
-.nav .btn.pill:focus{ outline: 3px solid rgba(255,255,255,0.12); outline-offset: 2px}
-.nav .btn.pill.active{ background: linear-gradient(135deg,var(--accent),var(--accent2)); border: 1px solid rgba(255,255,255,0.15); color: #fff; box-shadow: 0 8px 18px rgba(0,0,0,0.25)}
 
-/* Underline animation */
-.nav .btn.pill::after{ content:""; position:absolute; left:12px; right:12px; bottom:-6px; height:2px; background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); transform-origin: left center; transform: scaleX(0); transition: transform .28s cubic-bezier(.2,.9,.2,1)}
-.nav .btn.pill:hover::after, .nav .btn.pill.active::after{ transform: scaleX(1)}
+.sound-enable-overlay .btn-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
 
-/* Text clarity and animation */
-.nav .btn{ font-weight:600; letter-spacing:.2px; color: rgba(255,255,255,0.95); text-shadow: 0 1px 0 rgba(0,0,0,0.2)}
-.nav .brand{ color: #fff }
-
-/* Staggered fade-in animation for nav items */
-.nav ul li{ opacity:0; transform: translateY(-6px); animation: navItemIn .5s forwards ease; }
-.nav ul li:nth-child(1){ animation-delay: .12s }
-.nav ul li:nth-child(2){ animation-delay: .18s }
-.nav ul li:nth-child(3){ animation-delay: .24s }
-.nav ul li:nth-child(4){ animation-delay: .3s }
-.nav ul li:nth-child(5){ animation-delay: .36s }
-@keyframes navItemIn{ to{ opacity:1; transform: translateY(0) } }
-
-/* Accent focus indicator for keyboard users */
-.nav .btn:focus-visible{ box-shadow: 0 0 0 4px rgba(102,0,153,0.18)}
-
-/* শেপ বাটন স্টাইল */
-.btn.heart{background: linear-gradient(135deg,#ff5e8a,#ff2e63)}
-.btn.moon{background: linear-gradient(135deg,#6a0572,#3b2a98)}
-.btn.love{background: linear-gradient(135deg,#ff7eb3,#ff758c)}
-
-/* গ্লাসমরফিজম কার্ড */
-.glass{
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-brd);
+/* Apology overlay */
+.apology-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(12px);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100001;
+  padding: 20px;
 }
 
-/* হিরো */
-.hero{
-  display:grid; grid-template-columns: 1.2fr .8fr; gap:24px;
-  padding:60px 24px; align-items:center;
+.apology-overlay.fade-out {
+  animation: fadeOut 0.6s ease-out forwards;
 }
-.hero h1{
-  margin:0 0 8px 0; font-size:clamp(32px,6vw,60px); color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,.4);
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
-.tagline{color:#ffe8f0}
-.quote{margin-top:10px; font-size:1.1rem; color:#fff}
-.cta-group{display:flex; gap:12px; margin-top:18px}
 
-/* CTA: icon + text style for clarity and animation */
-.cta-group .btn{ position:relative; padding:10px 16px 10px 20px; display:inline-flex; align-items:center; gap:10px; font-weight:700 }
-.cta-group .btn svg{ width:20px; height:20px; flex-shrink:0; fill: currentColor; transition: transform .22s ease, opacity .22s ease }
-.cta-group .btn .label{ display:inline-block }
-
-/* Stronger contrast for icon color on gradient backgrounds */
-.cta-group .btn.heart{ color: #fff }
-.cta-group .btn.moon{ color: #fff }
-.cta-group .btn.love{ color: #fff }
-
-/* Hover/focus: subtle lift and icon pop */
-.cta-group .btn:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 26px rgba(0,0,0,0.18) }
-.cta-group .btn:hover svg{ transform: translateY(-3px) scale(1.08) }
-.cta-group .btn:focus-visible{ outline: 2px solid rgba(255,255,255,0.14); outline-offset: 4px }
-
-/* Create an accent border for CTA icons */
-.cta-group .btn::before{ content: ''; position:absolute; left:10px; top:8px; bottom:8px; width: 3px; border-radius: 6px; transform-origin: left; opacity: 0.16 }
-.cta-group .btn.heart::before{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35)) }
-.cta-group .btn.moon::before{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35)) }
-.cta-group .btn.love::before{ background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.35)) }
-
-/* small active animation */
-.cta-group .btn:active{ transform: translateY(-1px) scale(0.995) }
-
-/* If you want icons to tint differently on hover for accent */
-.cta-group .btn.heart:hover svg{ filter: drop-shadow(0 6px 10px rgba(255,105,150,0.25)) }
-.cta-group .btn.moon:hover svg{ filter: drop-shadow(0 6px 14px rgba(120,100,255,0.15)) }
-.cta-group .btn.love:hover svg{ filter: drop-shadow(0 6px 14px rgba(255,120,160,0.2)) }
-
-.hero-portrait{
-  display:flex; align-items:center; justify-content:center;
-}
-.hero-portrait img{
-  width: 280px; height: 280px; object-fit: cover;
+.apology-content {
+  background: linear-gradient(135deg, rgba(255, 200, 220, 0.95), rgba(150, 100, 200, 0.95));
+  backdrop-filter: blur(16px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 24px;
-  border: 4px solid rgba(255,255,255,.7);
-  box-shadow: 0 20px 50px rgba(0,0,0,.35);
-  animation: floatY 6s ease-in-out infinite;
-}
-@keyframes floatY{
-  0%,100%{transform: translateY(0)}
-  50%{transform: translateY(-10px)}
+  padding: clamp(20px, 5vw, 40px);
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-/* ফিচার্স */
-.features{display:grid; grid-template-columns: repeat(3,1fr); gap:18px; padding:24px}
-.card{padding:18px; color:#fff}
-.card h3{margin:0 0 8px 0}
-
-/* কন্টেইনার/গ্রিড */
-.container{max-width:1000px; margin:30px auto; padding:24px}
-.grid.two{display:grid; grid-template-columns:1fr 1fr; gap:24px}
-.info{list-style:none; padding:0; margin:0}
-.info li{margin:8px 0}
-
-/* এবাউট ভিজুয়াল শেপ */
-.shape{position:relative; width:180px; height:180px; margin:10px auto}
-.heart-shape{
-  background: linear-gradient(135deg,#ff758c,#ff1b6b);
-  transform: rotate(45deg);
-  border-radius: 24px;
-}
-.heart-shape::before, .heart-shape::after{
-  content:""; position:absolute; width:180px; height:180px; border-radius:50%;
-  background: inherit;
-}
-.heart-shape::before{ top:-90px; left:0 }
-.heart-shape::after{ left:-90px; top:0 }
-.moon-shape{
-  width:160px; height:160px; border-radius:50%;
-  background: radial-gradient(120px 120px at 40% 40%, #fff8, #fff0),
-              #c0c0ff;
-  box-shadow: inset -20px -10px 40px #99aaff, 0 10px 30px rgba(0,0,0,.2);
-  position:relative;
-}
-.moon-shape::after{
-  content:""; position:absolute; width:160px; height:160px; border-radius:50%;
-  background: radial-gradient(60px 60px at 70% 60%, rgba(0,0,0,.2), transparent 60%);
-  left:-28px; top:-6px; /* ডার্ক সাইড দিয়ে ক্রিসেন্ট ইফেক্ট */
-}
-.pulse{animation: pulse 2.6s infinite}
-@keyframes pulse{
-  0%,100%{transform: rotate(45deg) scale(1)}
-  50%{transform: rotate(45deg) scale(1.05)}
-}
-.glow{animation: glow 5s ease-in-out infinite}
-@keyframes glow{
-  0%,100%{box-shadow: inset -20px -10px 40px #99aaff, 0 0 20px #ffe}
-  50%{box-shadow: inset -10px -5px 30px #b4b8ff, 0 0 40px #fff}
+.apology-content h2 {
+  margin: 0 0 12px 0;
+  font-size: clamp(20px, 5vw, 32px);
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* গ্যালারি মেসনারি */
-.masonry{
-  columns: 3 280px; column-gap: 16px; padding: 8px;
-}
-.tile{break-inside: avoid; margin-bottom:16px; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.tile img{width:100%; display:block}
-.tile.wide img{aspect-ratio: 16/9; object-fit: cover}
-.tile.tall img{aspect-ratio: 3/4; object-fit: cover}
-/* Ensure embedded iframes (e.g., Facebook video) fit tiles and maintain aspect ratio */
-.tile iframe{ width:100%; height:auto; display:block; aspect-ratio: 16/9; border:0; }
-/* Ensure local HTML5 video fits tiles and maintain aspect ratio */
-.tile video{ width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover; }
-
-/* Modern video gallery */
-.video-gallery{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding: 18px; max-width: 1200px; margin: 18px auto }
-.video-card{ background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow:hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.18); display:flex; flex-direction:column; gap:8px }
-.video-card{ transition: transform .42s cubic-bezier(.2,.9,.2,1), box-shadow .3s ease, filter .3s ease; }
-.video-card:hover{ transform: translateY(-6px); box-shadow: 0 26px 70px rgba(0,0,0,0.38); filter: saturate(1.06) contrast(1.03) }
-.video-card video{
-  width: 100%;
-  height: auto; /* Let aspect-ratio dictate the height so proportions remain correct */
-  aspect-ratio: 16/9; /* consistent preview size for all videos */
-  object-fit: contain; /* preserve whole video frame without cropping */
-  object-position: center center; /* center the video within its frame */
-  display: block;
-  background: #000;
+.apology-content p {
+  margin: 0 0 20px 0;
+  font-size: clamp(14px, 3vw, 18px);
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.5;
 }
 
-/* Featured romantic hero video style */
-.video-card.featured{ grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; border-radius: 18px; overflow: hidden; position: relative }
-.video-card.featured video{ aspect-ratio: 21/9; height: auto; object-fit: cover; display:block }
-.video-card.featured::after{ content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,20,80,0.1)); mix-blend-mode: screen; pointer-events:none }
-.video-card.featured .meta{ position:absolute; right: 20px; bottom: 22px; left: 22px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18)); padding:18px; border-radius:12px; color:#fff; display:flex; flex-direction:column; gap:6px }
-.video-card.featured .meta h3{ font-size:1.4rem; margin:0; color:#fff; text-shadow:0 8px 30px rgba(0,0,0,0.5) }
-.video-card.featured .meta p{ margin:0; color:rgba(255,255,255,0.9) }
-.video-card.featured .big-play{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:86px; height:86px; border-radius:50%; background: linear-gradient(135deg,#ff7eb3,#ff2e63); display:flex; align-items:center; justify-content:center; font-size:34px; color:#fff; border:none; box-shadow: 0 12px 40px rgba(255,46,99,0.16) }
-.video-card.featured .big-play:hover{ transform: translate(-50%,-50%) scale(1.02) }
-.video-card.featured .romantic-accents{ position:absolute; left: 8px; top: 8px; right: auto; pointer-events:none }
-.video-card.featured .romantic-accents .heart{ display:inline-block; width:22px; height:22px; background: linear-gradient(135deg,#ff8fb2,#ffc3a0); transform: rotate(45deg); border-radius:6px; box-shadow: 0 8px 30px rgba(255,100,140,0.14); }
-/* heart pulse */
-.video-card.featured .romantic-accents .heart{ animation: heartBeat 1600ms cubic-bezier(.2,.8,.25,1) infinite }
-@keyframes heartBeat{ 0%{ transform: scale(.94) rotate(45deg) } 40%{ transform: scale(1.06) rotate(45deg) } 100%{ transform: scale(.94) rotate(45deg) } }
-
-/* hide small control buttons on featured hero */
-.video-card.featured .actions{ display: none }
-
-/* warmed romantic color grading */
-.video-card.featured video{ filter: saturate(1.1) brightness(1.02) contrast(1.04) sepia(0.04) }
-
-/* Make gallery responsive: featured takes full-width on small screens */
-@media (max-width:900px){
-  .video-gallery{ grid-template-columns: 1fr }
-  .video-card.featured{ grid-column: auto; }
-  .video-card.featured .meta{ left: 12px; right:12px; bottom: 12px }
-}
-.video-card .meta{ padding: 12px; display:flex; flex-direction:column; gap:8px }
-.video-card .meta h3{ margin: 0; font-size: 1rem; color: #fff }
-.video-card .meta p{ margin:0; font-size: 0.9rem; color: rgba(255,255,255,0.75) }
-.video-card .actions{ display:flex; gap:8px; padding: 12px; border-top: 1px solid rgba(255,255,255,0.03); justify-content:space-between }
-.video-card .btn{ padding:8px 10px; border-radius:8px; background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); color: #fff; font-weight:600; cursor:pointer }
-
-/* Modal / Lightbox */
-.video-modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999; background: rgba(0,0,0,0.72) }
-.video-modal.open{ display:flex }
-.video-modal .inner{ width: min(1100px, 95vw); max-height: 86vh; background: #000; border-radius: 12px; overflow:hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.65) }
-.video-modal .inner video{
-  width: 100%;
-  height: auto; /* keep correct proportions */
-  aspect-ratio: 16/9;
-  object-fit: contain; /* prevent modal distortion */
-  object-position: center center;
-  display: block; background:#000 }
-.video-modal .controls{ display:flex; justify-content:flex-end; gap:8px; padding:10px }
-.video-modal .controls .btn{ background: rgba(255,255,255,0.06); color:#fff; padding:8px 12px; border-radius:8px; border: none }
-
-@media (max-width: 680px){
-  /* Preserve aspect ratio on smaller screens */
-  .video-card video{ aspect-ratio: 16/9; width: 100%; height: auto }
-  .video-modal .inner{ width: 95vw }
+.apology-content button {
+  background: linear-gradient(135deg, #ff5e8a, #ff2e63);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(255, 46, 99, 0.3);
 }
 
-/* ফর্ম */
-.form{display:grid; gap:14px}
-.form-row{display:grid; gap:6px}
-input, textarea{
-  padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.5);
-  background: rgba(255,255,255,.2); color:#fff; outline:none;
-}
-input::placeholder, textarea::placeholder{color:#f8e6ed}
-.form-note{margin-top:8px; color:#ffe8f0}
-
-/* ফুটার */
-.footer{margin:24px; padding:14px; text-align:center; color:#fff}
-
-/* ফ্লোটিং শেপ ব্যাকগ্রাউন্ড */
-#floating-shapes{position:fixed; inset:0; pointer-events:none; z-index:0}
-.f-shape{
-  position:absolute; opacity:.7; filter: blur(.2px);
-  animation: drift var(--dur) linear infinite;
-}
-@keyframes drift{
-  0%{ transform: translateY(0) translateX(0) rotate(0deg); opacity:.9}
-  100%{ transform: translateY(-120vh) translateX(20vw) rotate(360deg); opacity:0}
+.apology-content button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 46, 99, 0.5);
 }
 
-/* Floating SORRY text that drifts like the shapes */
-.f-sorry{
-  position:absolute; display:inline-block; pointer-events:none; white-space:nowrap; opacity:.95;
-  font-weight:800; font-family: 'Poppins','Noto Sans Bengali', system-ui; text-transform:uppercase;
-  color: #ffffff; text-shadow: 0 6px 18px rgba(0,0,0,.45);
-  animation: drift var(--dur, 9000ms) linear forwards;
-  transform-origin:center;
-  z-index: 5; /* above the background floating shapes but below overlays */
+.apology-content button:active {
+  transform: translateY(0);
 }
-.f-sorry.small{ font-size: 18px; letter-spacing: 0.06em }
-.f-sorry.medium{ font-size: 28px; letter-spacing: 0.04em }
-.f-sorry.large{ font-size: 44px; letter-spacing: 0.02em }
-.f-sorry.gradient{ background: linear-gradient(90deg, #ffd1dc, #ff8fb2, #ff2e63); -webkit-background-clip:text; background-clip:text; color:transparent }
-.f-sorry.subtle{ color: rgba(255,255,255,0.92) }
-
-/* রেসপন্সিভ */
-@media (max-width:900px){
-  .hero{grid-template-columns: 1fr; text-align:center}
-  .features{grid-template-columns:1fr}
-  .grid.two{grid-template-columns:1fr}
-  .cta-group{justify-content:center}
-}
-
-/* Piu overlay animation - non-intrusive, transparent backdrop */
-.piu-overlay{
-  position: fixed; inset: 0; z-index: 9999; display:flex; align-items:center; justify-content:center;
-  pointer-events: none; /* don't block underlying content, message can still be clicked */
-}
-.piu-message{
-  pointer-events: auto; /* only the message consumes pointer events */
-  font-weight:900; font-family: 'Poppins', 'Noto Sans Bengali', system-ui; text-transform:none;
-  font-size: clamp(42px, 9vw, 120px); line-height: 1; letter-spacing: 0.03em;
-  /* colorful gradient for modern look */
-  background: linear-gradient(90deg,#ff7eb3,#ff2e63,#6a0572,#4d9cff);
-  -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  display: inline-flex; gap: 6px; align-items:center; justify-content:center;
-}
-.piu-message span{ display:inline-block; transform-origin: center; opacity: 0; filter: blur(6px);}
-
-/* per-letter pop animation */
-@keyframes piuPop{
-  0%{ transform: translateY(70px) rotateX(25deg) scale(.88); opacity:0; filter: blur(8px) }
-  45%{ transform: translateY(-8px) rotateX(0deg) scale(1.06); opacity:1; filter: blur(0) }
-  100%{ transform: translateY(0px) rotateX(0deg) scale(1); opacity:1; filter: blur(0) }
-}
-
-.piu-message span{ animation: piuPop .9s cubic-bezier(.2,.8,.25,1) both; }
-.piu-message span:nth-child(1) { animation-delay: 0.02s }
-.piu-message span:nth-child(2) { animation-delay: 0.06s }
-.piu-message span:nth-child(3) { animation-delay: 0.1s }
-.piu-message span:nth-child(4) { animation-delay: 0.14s }
-.piu-message span:nth-child(5) { animation-delay: 0.18s }
-.piu-message span:nth-child(6) { animation-delay: 0.22s }
-.piu-message span:nth-child(7) { animation-delay: 0.26s }
-.piu-message span:nth-child(8) { animation-delay: 0.3s }
-.piu-message span:nth-child(9) { animation-delay: 0.34s }
-.piu-message span:nth-child(10) { animation-delay: 0.38s }
-
-/* small scale out and fade after the pop, to avoid lingering */
-.piu-overlay.fade-out .piu-message{ transform: scale(.9); opacity:.0; transition: opacity .32s ease, transform .32s ease }
-
-/* reduce size on small screens */
-@media (max-width:460px){
-  .piu-message{ font-size: clamp(26px, 8vw, 48px) }
-}
-
-/* "Sorry" rain effect (Matrix-style drops that say 'sorry') */
-.sorry-rain{
-  position: fixed; inset: 0; z-index: 9998; pointer-events: none; display: block; overflow: visible;
-}
-.sorry-rain .column{position:absolute; left:0; top:0; bottom:0; width: 0;}
-.sorry-rain .drop{
-  position: absolute; white-space: nowrap; pointer-events: none; font-weight: 700;
-  font-family: 'Poppins', 'Noto Sans Bengali', system-ui; font-size: clamp(14px, 2.6vw, 36px);
-  color: rgba(255,255,255,0.98); mix-blend-mode: screen; text-shadow: 0 2px 10px rgba(0,0,0,0.45);
-  transform-origin: left top;
-  opacity: 0; transform: translateY(-20vh) rotate(-6deg) scale(.9);
-  animation: sorryFall var(--duration, 1800ms) linear forwards;
-}
-@keyframes sorryFall{
-  0%{ opacity:0; transform: translateY(-20vh) rotate(-6deg) scale(.96)}
-  15%{ opacity:.95 }
-  80%{ opacity:.95 }
-  100%{ opacity:0; transform: translateY(120vh) rotate(8deg) scale(1.02)}
-}
-
-/* color variants, only subtle so it doesn't clash */
-.sorry-rain .drop.variant-1{ color: #fff }
-.sorry-rain .drop.variant-2{ color: rgba(255,140,153,0.92) }
-.sorry-rain .drop.variant-3{ color: rgba(190,150,255,0.95) }
-.sorry-rain .drop.variant-4{ color: rgba(120,200,255,0.95) }
-
-/* reduce intensity on mobile */
-@media (max-width:900px){
-  .sorry-rain .drop{ font-size: clamp(12px, 4.4vw, 34px) }
-}
-
-/* small fade-out control if needed */
-.sorry-rain.fade-out{ opacity: .0; transition: opacity .4s ease }
-
-/* Continuous Sorry Rain toggle button */
-.sorry-toggle{
-  position: fixed; right: 18px; bottom: 18px; z-index: 10001; padding: 10px 14px; border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); color:#fff; border: 1px solid rgba(255,255,255,0.08);
-  font-weight:600; cursor:pointer; backdrop-filter: blur(8px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-}
-.sorry-toggle.active{ background: linear-gradient(90deg,#ff7eb3,#ff2e63); color:#fff; border: none; box-shadow: 0 14px 40px rgba(255, 120, 160, 0.18) }
-.sorry-toggle:hover{ transform: translateY(-4px); }
-
-
-/* SORRY flowers/leaves overlay */
-.sf-overlay{ position: fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:99999; pointer-events:none }
-.sf-overlay .sf-inner{ position:relative; text-align:center; pointer-events:auto }
-.sf-word{ font-family: 'Poppins', 'Noto Sans Bengali', system-ui; font-weight:900; color: transparent; font-size: clamp(48px, 10vw, 160px); letter-spacing: .06em; background: linear-gradient(90deg,#ff7eb3 0%, #ffd1dc 50%, #f6f7ff 100%); -webkit-background-clip: text; background-clip: text; text-shadow: 0 8px 28px rgba(0,0,0,.35) }
-.sf-letter{ display:inline-block; opacity:0; transform-origin:center;}
-
-/* entry pop for the SORRY text */
-@keyframes sfPop{ 0%{ transform: translateY(-40px) rotate(-6deg) scale(.86); opacity:0 } 55%{ transform: translateY(8px) rotate(2deg) scale(1.06); opacity:1 } 100%{ transform: translateY(0) rotate(0) scale(1); opacity:1 } }
-.sf-letter{ animation: sfPop .7s cubic-bezier(.2,.8,.25,1) both }
-.sf-letter:nth-child(1){ animation-delay: .06s }
-.sf-letter:nth-child(2){ animation-delay: .12s }
-.sf-letter:nth-child(3){ animation-delay: .18s }
-.sf-letter:nth-child(4){ animation-delay: .24s }
-.sf-letter:nth-child(5){ animation-delay: .32s }
-.sf-letter:nth-child(6){ animation-delay: .38s }
-
-/* falling flowers/leaves */
-.sf-flower{ position: fixed; top:-10vh; pointer-events:none; opacity:0; transform: translateY(-20vh) rotate(0deg); animation: sfFall var(--sf-duration, 4200ms) linear forwards; will-change: transform, opacity }
-@keyframes sfFall{
-  0%{ transform: translateY(-30vh) rotate(0deg) scale(.9); opacity:0 }
-  10%{ opacity:1 }
-  50%{ transform: translateY(50vh) rotate(240deg) scale(1.04); opacity:1 }
-  90%{ opacity:0.6 }
-  100%{ transform: translateY(120vh) rotate(420deg) scale(.98); opacity:0 }
-}
-
-.sf-flower.variant-1{ color: #ff8fb2; filter: drop-shadow(0 8px 20px rgba(100,0,50,0.12)) }
-.sf-flower.variant-2{ color: #f6e3c0; filter: drop-shadow(0 8px 20px rgba(80,60,0,0.08)) }
-.sf-flower.variant-3{ color: #96c4ff; filter: drop-shadow(0 8px 20px rgba(0,40,100,0.08)) }
-.sf-flower.variant-4{ color: #ffd1e6; filter: drop-shadow(0 8px 20px rgba(120,40,80,0.1)) }
-
-/* a small glow pop on top when they appear */
-.sf-flower::before{ content:''; position:absolute; inset:0; border-radius:8px; }
-
-/* responsive adjustments */
-@media (max-width:900px){
-  .sf-word{ font-size: clamp(42px, 14vw, 88px) }
-}
-
-.sf-overlay.fade-out{ transition: opacity .36s ease; opacity: 0 }
-
-/* Inline SORRY block in hero */
-.sorry-inline{
-  display:inline-block; margin-top:12px; font-family:'Poppins','Noto Sans Bengali', system-ui; font-weight:900;
-  letter-spacing: .06em; font-size: clamp(26px, 3.6vw, 50px); color: transparent;
-  -webkit-background-clip: text; background-clip: text; background: linear-gradient(90deg, #ffd1dc, #ff2e63);
-  text-shadow: 0 6px 18px rgba(0,0,0,.28); transform-origin:center; cursor:default;
-}
-.sorry-inline .sf-letter{ display:inline-block; opacity:0; transform: translateY(-8px);}
-.sorry-inline .sf-letter.pop{ animation: sfPop .68s cubic-bezier(.2,.8,.25,1) both }
-
-/* Decorative underline on hover */
-.sorry-inline:hover{ filter: drop-shadow(0 6px 22px rgba(255, 70, 120, 0.12)); }
-
-@media (max-width:900px){
-  .sorry-inline{ font-size: clamp(20px, 6.8vw, 36px) }
-}
-
-/* External-referrer apology overlay */
-.external-ref-overlay{ position: fixed; inset:0; z-index: 100001; display:flex; align-items:center; justify-content:center; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)); }
-.external-ref-overlay .extern-inner{ width: min(720px, 92vw); padding: 18px; border-radius: 14px; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.06); text-align:center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
-.external-ref-overlay .extern-inner h2{ margin: 0 0 8px 0; font-size: clamp(20px, 4.8vw, 36px); color: #fff; }
-.external-ref-overlay .extern-inner p{ margin: 0 0 14px 0; color: rgba(255,255,255,0.9); font-size: 1rem }
-.external-ref-overlay .extern-controls{ display:flex; gap: 12px; justify-content:center; align-items:center }
-.external-ref-overlay .extern-controls .btn{ padding:10px 14px; border-radius:12px; color:#fff; border:none; cursor:pointer; font-weight:700 }
-.external-ref-overlay .extern-controls .close-extern{ background: rgba(255,255,255,0.06) }
-.external-ref-overlay.fade-out{ opacity: 0; transition: opacity .36s ease }
-
-@media (max-width: 520px){
-  .external-ref-overlay .extern-inner{ padding: 12px }
-  .external-ref-overlay .extern-inner h2{ font-size: clamp(18px, 6vw, 26px) }
-}
-
-/* OK button style (primary action) */
-.external-ref-overlay .extern-controls .ok-extern{ background: linear-gradient(90deg,#6a0572,#ff2e63); border: none; color: #fff }
-.external-ref-overlay .extern-controls .ok-extern:hover{ transform: translateY(-2px); }
-.video-card video.portrait{ aspect-ratio: 3/4; }
-
-/* Overlay for enabling sound on gallery video */
-.sound-enable-overlay{ position: fixed; inset: 0; z-index: 100002; display:flex; align-items:center; justify-content:center; background: linear-gradient(0deg, rgba(0,0,0,0.55), rgba(0,0,0,0.6)); }
-.sound-enable-overlay .sound-inner{ padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); text-align:center; color:#fff }
-.sound-enable-overlay .sound-inner p{ margin:0 0 12px 0 }
-.sound-enable-overlay .sound-controls{ display:flex; gap:10px; justify-content:center }
-.sound-enable-overlay .sound-controls .btn{ padding:8px 12px; border-radius:8px; background: linear-gradient(90deg,#ff7eb3,#ff2e63); border:none; color:#fff }
-.sound-enable-overlay .sound-controls .sound-close{ background: rgba(255,255,255,0.06); color:#fff }
->>>>>>> 84b0020578e868ef4c6009ef4621b8072c807f97
-.sound-enable-overlay.fade-out{ opacity: 0; transition: opacity .36s ease }
