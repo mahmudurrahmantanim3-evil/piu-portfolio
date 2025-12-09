@@ -39,6 +39,106 @@ body {
   background-position: center;
   background-blend-mode: overlay;
 }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: #fff;
+}
+
+header {
+  background: rgba(0,0,0,0.5);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+
+header h1 { margin: 0; font-size: 1.5rem; }
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+nav a.active {
+  border-bottom: 2px solid #ff4081;
+}
+nav a:hover {
+  color: #ffccff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.video-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.video-card video {
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.video-card p {
+  margin: 0;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.about, .contact {
+  background: rgba(255,255,255,0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  margin-top: 2rem;
+  border-radius: 12px;
+}
+
+.mobile-contact {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff4081;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.mobile-contact:hover {
+  background: #f50057;
+}
 
 .page-about, .page-gallery, .page-contact {
   background-image: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.35), transparent 60%),

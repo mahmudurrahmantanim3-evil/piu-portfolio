@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.transition = 'opacity 800ms ease';
     document.body.style.opacity = 1;
   });
+  // Future enhancements can go here
+console.log("ভিডিও গ্যালারি লোড হয়েছে!");
   function createSorry() {
   const s = document.createElement("div");
   s.className = "sorry";
@@ -1292,6 +1294,20 @@ setInterval(createSorry, 1000);
         if (SHOW_ONLY_ONCE_PER_SESSION) sessionStorage.setItem('apology-shown','1');
         if (SHOW_ONLY_FIRST_TIME_EVER) localStorage.setItem('apology-first-shown','1');
       }
+      document.addEventListener("DOMContentLoaded", function () {
+  const gallery = document.getElementById("video-gallery");
+  if (!gallery || !window.VIDEO_FILES) return;
+
+  window.VIDEO_FILES.forEach(video => {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.innerHTML = `
+      <video controls src="${video.path}" title="${video.title}"></video>
+      <p>${video.title || 'Untitled Video'}</p>
+    `;
+    gallery.appendChild(card);
+  });
+});
       // Legacy close (if some code leaves a close button); keep behavior but prefer OK
       const closeBtn = overlay.querySelector('.close-extern');
       if (closeBtn) closeBtn.addEventListener('click', closeOverlay, {passive:true});

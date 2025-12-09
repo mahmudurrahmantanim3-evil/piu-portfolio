@@ -1,69 +1,87 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="প্রাপ্তি রায় | ভিডিও গ্যালারি">
-  <title>প্রাপ্তি রায় | ভিডিও</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ভিডিও গ্যালারি • Piu</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="page page-video">
-  <div id="floating-shapes"></div>
-  
-  <nav class="nav glass" aria-label="Main navigation">
-    <div class="brand">Prapti • Piu</div>
-    <button class="nav-toggle" aria-controls="nav-list" aria-expanded="false" aria-label="Open menu">☰</button>
-    <ul id="nav-list" aria-hidden="false">
-      <li><a class="btn pill" href="index.html">হোম</a></li>
-      <li><a class="btn pill active" aria-current="page" href="video.html">ভিডিও</a></li>
-      <li><a class="btn pill" href="about.html">সম্পর্কে</a></li>
-      <li><a class="btn pill" href="gallery.html">গ্যালারি</a></li>
-      <li><a class="btn pill" href="contact.html">যোগাযোগ</a></li>
-    </ul>
-  </nav>
+<body class="page video">
+
+  <header>
+    <h1>❤️ Piu</h1>
+    <nav>
+      <a href="index.html">হোম</a>
+      <a href="about.html">আমাদের সম্পর্কে</a>
+      <a href="gallery.html" class="active">গ্যালারি</a>
+    </nav>
+  </header>
 
   <main class="container">
-    <h1>🎥 আমার ভিডিও গ্যালারি</h1>
-    <p class="subtitle">প্রিয় মুহূর্তগুলি এখানে সংগৃহীত</p>
-    
-    <section id="video-gallery" class="video-gallery" aria-live="polite">
-      <!-- Video cards will be generated here by script.js -->
+    <section id="video-gallery" class="video-gallery">
+      <h2 class="section-title">🎬 ভিডিও গ্যালারি</h2>
+
+      <div class="video-card">
+        <video controls>
+          <source src="p/v1.mp4" type="video/mp4" />
+        </video>
+        <p>Video 1</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="p/v2.mp4" type="video/mp4" />
+        </video>
+        <p>Video 2</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="p/v3.mp4" type="video/mp4" />
+        </video>
+        <p>Video 3</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="p/v4.mp4" type="video/mp4" />
+        </video>
+        <p>Video 4</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="p/TikTok video_1764464176616_0(MP4).mp4" type="video/mp4" />
+        </video>
+        <p>TikTok Video</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="p/Prapti Roy_s short video with ♬ original sound(MP4).mp4" type="video/mp4" />
+        </video>
+        <p>Short Video</p>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2 class="section-title">প্রোফাইল</h2>
+      <p>এই ভিডিও গ্যালারিতে পাখির আর তার রিলেটেড বিষয় সংরক্ষিত হয়েছে। আশা করি এগুলা ভাল লাগবে!
+      </p>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title">যোগাযোগের তথ্য</h2>
+      <p>যোগাযোগের জন্য <a href="contact.html">এই লিংক</a> ব্যবহার করুন।</p>
     </section>
   </main>
 
   <footer class="footer glass">
-    <p>❤️ • Piu</p>
+    <p>© 2025 • ❤️ Piu</p>
   </footer>
 
-  <a class="mobile-contact" href="contact.html" aria-label="Contact">যোগাযোগ</a>
-
-  <!-- Provide video list for the gallery -->
-  <script>
-    window.VIDEO_FILES = [
-      { path: 'p/v1.mp4', title: 'Video 1' },
-      { path: 'p/v2.mp4', title: 'Video 2' },
-      { path: 'p/v3.mp4', title: 'Video 3' },
-      { path: 'p/v4.mp4', title: 'Video 4' },
-      { path: 'p/TikTok video_1764464176616_0(MP4).mp4', title: 'TikTok Video' },
-      { path: 'p/Prapti Roy_s short video with ♬ original sound(MP4).mp4', title: 'Prapti Video' }
-    ];
-  </script>
+  <a class="mobile-contact" href="contact.html" aria-label="Contact">Contact</a>
 
   <script src="script.js"></script>
-  
-  <!-- Initialize video gallery -->
-  <script>
-    (function(){
-      const list = window.VIDEO_FILES || [];
-      if (list.length && window.initVideoGallery) {
-        window.initVideoGallery(list);
-      } else {
-        const g = document.getElementById('video-gallery');
-        if (g) {
-          g.innerHTML = '<p style="color: #fff; text-align: center; padding: 40px;">কোনো ভিডিও পাওয়া যায়নি। p/ ফোল্ডারে MP4 ফাইল যোগ করুন।</p>';
-        }
-      }
-    })();
-  </script>
 </body>
 </html>
