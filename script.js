@@ -17,6 +17,40 @@ console.log("ভিডিও গ্যালারি লোড হয়েছে!
   const parent = document.getElementById("container") || document.body;
   parent.appendChild(s);
 
+  // Smooth fade-in animation for gallery items
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".masonry-gallery img, .video-card");
+  items.forEach((item, i) => {
+    item.style.opacity = 0;
+    item.style.transform = "translateY(20px)";
+    setTimeout(() => {
+      item.style.transition = "all 0.6s ease";
+      item.style.opacity = 1;
+      item.style.transform = "translateY(0)";
+    }, i * 150); // staggered animation
+  });
+});
+
+// Lightbox effect for images
+const galleryImages = document.querySelectorAll(".masonry-gallery img");
+galleryImages.forEach(img => {
+  img.addEventListener("click", () => {
+    const overlay = document.createElement("div");
+    overlay.className = "lightbox";
+    overlay.innerHTML = `
+      <div class="lightbox-content">
+        <img src="${img.src}" alt="${img.alt}">
+        <span class="close">&times;</span>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector(".close").addEventListener("click", () => {
+      overlay.remove();
+    });
+  });
+});
+
   // অ্যানিমেশন শেষ হলে remove করবে
   setTimeout(() => s.remove(), 7000);
 }
