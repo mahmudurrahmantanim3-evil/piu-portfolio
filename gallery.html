@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Piu • ছবি গ্যালারি</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>প্রাপ্তি রায় | গ্যালারি</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
-  <header>
-    <h1>❤️ Piu</h1>
-    <nav>
-      <a href="index.html">হোম</a>
-      <a href="about.html">আমাদের সম্পর্কে</a>
-      <a href="video.html">ভিডিও</a>
-      <a href="gallery.html" class="active">গ্যালারি</a>
-      <a href="contact.html">যোগাযোগ</a>
-    </nav>
-  </header>
+<body class="page page-gallery">
+  <div id="floating-shapes"></div>
+  <div id="container"></div>
+
+  <nav class="nav glass">
+    <div class="brand">Prapti • Piu</div>
+    <ul>
+      <li><a class="btn pill" href="index.html">হোম</a></li>
+      <li><a class="btn pill" href="video.html">ভিডিও</a></li>
+      <li><a class="btn pill" href="about.html">সম্পর্কে</a></li>
+      <li><a class="btn pill active" aria-current="page" href="gallery.html">গ্যালারি</a></li>
+      <li><a class="btn pill" href="contact.html">যোগাযোগ</a></li>
+    </ul>
+  </nav>
 
   <main class="container">
-    <h2 class="section-title">📸 ছবি গ্যালারি</h2>
-    <div class="masonry-gallery">
-      <img src="prapti-profile.jpg" alt="Pic 1">
-      <img src="prapti-bg.jpg" alt="Pic 2">
-      <img src="p/pic3.jpg" alt="Pic 3">
-      <img src="images/pic4.jpg" alt="Pic 4">
-      <img src="images/pic5.jpg" alt="Pic 5">
-      <img src="images/pic6.jpg" alt="Pic 6">
+    <h1 class="glass">স্মৃতির গ্যালারি</h1>
+    <div class="sorry-inline" aria-hidden="true">SORRY</div>
+    <div class="masonry">
+      <div class="tile"><img src="prapti-profile.jpg" alt="প্রাপ্তি"/></div>
+      <div class="tile tall"><img src="prapti-bg.jpg" alt="প্রাপ্তি"/></div>
+      <div class="tile"><img src="prapti-profile.jpg" alt="প্রাপ্তি"/></div>
+      <div class="tile wide"><img src="prapti-bg.jpg" alt="প্রাপ্তি"/></div>
+      <div class="tile">
+        <!-- Local HTML5 video for better autoplay/loop control -->
+        <video id="gallery-hero-video" playsinline autoplay loop muted preload="auto" poster="prapti-bg.jpg" style="width:100%; height:auto; display:block; aspect-ratio: 16/9;">
+          <source src="p/v1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="tile"><img src="p/pic.jpg" alt="">prapti</div>
     </div>
   </main>
 
-  <footer class="footer">
-    <p>© 2025 • ❤️ Piu</p>
+  <footer class="footer glass">
+    <p>❤️ • Piu</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

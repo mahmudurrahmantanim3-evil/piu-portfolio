@@ -1,87 +1,65 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ভিডিও গ্যালারি • Piu</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Gallery</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="page video">
-
-  <header>
-    <h1>❤️ Piu</h1>
-    <nav>
-      <a href="index.html">হোম</a>
-      <a href="about.html">আমাদের সম্পর্কে</a>
-      <a href="gallery.html" class="active">গ্যালারি</a>
-    </nav>
+<body>
+  <div id="container">
+  <nav class="nav glass">
+    <div class="brand">Prapti • Piu</div>
+    <ul>
+      <li><a class="btn pill" href="index.html">হোম</a></li>
+      <li><a class="btn pill active" aria-current="page" href="video.html">ভিডিও</a></li>
+      <li><a class="btn pill" href="about.html">সম্পর্কে</a></li>
+      <li><a class="btn pill" href="gallery.html">গ্যালারি</a></li>
+      <li><a class="btn pill" href="contact.html">যোগাযোগ</a></li>
+    </ul>
+  </nav>
+  <header class="header">
+    <h1>🎥 My Video Gallery</h1>
+    <p>আমার প্রিয় ভিডিওগুলো এখানে সাজানো আছে</p>
   </header>
 
   <main class="container">
-    <section id="video-gallery" class="video-gallery">
-      <h2 class="section-title">🎬 ভিডিও গ্যালারি</h2>
-
-      <div class="video-card">
-        <video controls>
-          <source src="p/v1.mp4" type="video/mp4" />
-        </video>
-        <p>Video 1</p>
-      </div>
-
-      <div class="video-card">
-        <video controls>
-          <source src="p/v2.mp4" type="video/mp4" />
-        </video>
-        <p>Video 2</p>
-      </div>
-
-      <div class="video-card">
-        <video controls>
-          <source src="p/v3.mp4" type="video/mp4" />
-        </video>
-        <p>Video 3</p>
-      </div>
-
-      <div class="video-card">
-        <video controls>
-          <source src="p/v4.mp4" type="video/mp4" />
-        </video>
-        <p>Video 4</p>
-      </div>
-
-      <div class="video-card">
-        <video controls>
-          <source src="p/TikTok video_1764464176616_0(MP4).mp4" type="video/mp4" />
-        </video>
-        <p>TikTok Video</p>
-      </div>
-
-      <div class="video-card">
-        <video controls>
-          <source src="p/Prapti Roy_s short video with ♬ original sound(MP4).mp4" type="video/mp4" />
-        </video>
-        <p>Short Video</p>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <h2 class="section-title">প্রোফাইল</h2>
-      <p>এই ভিডিও গ্যালারিতে পাখির আর তার রিলেটেড বিষয় সংরক্ষিত হয়েছে। আশা করি এগুলা ভাল লাগবে!
-      </p>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2 class="section-title">যোগাযোগের তথ্য</h2>
-      <p>যোগাযোগের জন্য <a href="contact.html">এই লিংক</a> ব্যবহার করুন।</p>
+    <section id="video-gallery" class="video-gallery" aria-live="polite">
+      <!-- Video cards will be generated here by script.js -->
     </section>
   </main>
 
-  <footer class="footer glass">
-    <p>© 2025 • ❤️ Piu</p>
+  <footer class="footer">
+    <p>© 2025 Mahmudur’s Website</p>
   </footer>
+  </div>
+  <div id="floating-shapes"></div>
 
-  <a class="mobile-contact" href="contact.html" aria-label="Contact">Contact</a>
-
+  <!-- Provide a simple JSON list of videos found in `p/` for the gallery script -->
+  <script>
+    // You can either provide string paths (old behavior) or objects with title/desc:
+    window.VIDEO_FILES = [
+      { path: 'p/v1.mp4', title: 'Sunset Walk' },
+      { path: 'p/v2.mp4', title: 'College Memories' },
+      { path: 'p/v3.mp4', title: 'asolei sob shopno to ar bastob hoy na' },
+      { path: 'p/v4.mp4', title: 'kishu kotha' },
+      { path: 'p/TikTok video_1764464176616_0(MP4).mp4', title: 'Fun Reel' },
+      { path: 'p/Prapti Roy_s short video with ♬ original sound(MP4).mp4', title: 'Prapti Short' }
+    ];
+  </script>
   <script src="script.js"></script>
+  <!-- Inline code to initialise the gallery; script.js defines `initVideoGallery` -->
+  <script>
+    (function(){
+      const list = window.VIDEO_FILES || [];
+      if (list.length) {
+        if (window.initVideoGallery) window.initVideoGallery(list);
+      } else {
+        // fallback: show a friendly message
+        const g = document.getElementById('video-gallery');
+        g.innerHTML = '<p>No videos found in the `p/` folder. Add MP4s to the p/ directory and refresh.</p>';
+      }
+    })();
+  </script>
 </body>
 </html>
